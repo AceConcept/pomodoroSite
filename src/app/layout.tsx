@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pomotrack",
+  title: "Pomotrack Home",
   description: "Your website description",
 };
 
