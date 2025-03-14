@@ -3,7 +3,7 @@ import Button from './components/Button'
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-white">
       {/* Hero Section */}
       <div className="px-[14.5vw]">
         <div className="w-full md:w-[70%]">

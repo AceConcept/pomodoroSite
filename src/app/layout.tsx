@@ -20,9 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body className="font-inter">
+      <body className="font-inter bg-white min-h-screen">
         <Header />
-        <main className="min-h-screen">
+        <main className="min-h-screen bg-white">
           {children}
         </main>
       </body>
