@@ -1,7 +1,43 @@
+'use client';
+
 import Image from 'next/image'
 import Button from './components/Button'
+import { useState, useEffect } from 'react'
+
+async function getLatestReleaseDownloadUrl() {
+  try {
+    const response = await fetch('https://api.github.com/repos/dtom90/PomoTrack/releases/latest');
+    const data = await response.json();
+    
+    // Find the first asset that matches your pattern
+    const matchingAssets = data.assets.filter((asset: { name: string; }) => 
+      asset.name.match(new RegExp('PomoTrack-\\d+\\.\\d+\\.\\d+\\.dmg'))
+    );
+    
+    return matchingAssets.length > 0 ? matchingAssets[0]?.browser_download_url : null;
+  } catch (error) {
+    console.error('Error fetching release:', error);
+    return null;
+  }
+}
+
+const getAppUrls = (macUrl: string | null) => ({
+  browser: 'https://pomotrack.app/',
+  github: 'https://github.com/dtom90/PomoTrack',
+  mac: macUrl || '#' // Use fetched URL or fallback to '#'
+});
 
 export default function Home() {
+  const [macUrl, setMacUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    getLatestReleaseDownloadUrl().then(url => {
+      setMacUrl(url);
+    });
+  }, []);
+
+  const urls = getAppUrls(macUrl);
+  
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -17,10 +53,17 @@ export default function Home() {
             </p>
 
             <div className="flex gap-4 mt-5">
-              <Button variant="dark">
+              <Button 
+                variant="dark"
+                href={urls.mac}
+                download
+              >
                 Download for Mac
               </Button>
-              <Button variant="dark">
+              <Button 
+                variant="dark"
+                onClick={() => window.open(urls.browser, '_blank')}
+              >
                 Use on Browser
               </Button>
             </div>
@@ -109,10 +152,17 @@ export default function Home() {
             Stay on task today
           </h2>
           <div className="flex gap-4">
-            <Button variant="dark">
+            <Button 
+              variant="dark"
+              href={urls.mac}
+              download
+            >
               Download for Mac
             </Button>
-            <Button variant="dark">
+            <Button 
+              variant="dark"
+              onClick={() => window.open(urls.browser, '_blank')}
+            >
               Use on Browser
             </Button>
           </div>

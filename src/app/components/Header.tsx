@@ -1,6 +1,16 @@
+'use client';
+
 import Button from './Button';
 
+const getAppUrls = () => ({
+  browser: 'https://pomotrack.app/',
+  github: 'https://github.com/dtom90/PomoTrack',
+  mac: '#' // TODO: Add Mac download link when available
+});
+
 export default function Header() {
+  const urls = getAppUrls();
+  
   return (
     <header className="bg-white px-[14.5vw] pt-6">
       <div className="flex justify-between items-center h-10">
@@ -29,6 +39,7 @@ export default function Header() {
               />
             </svg>
           }
+          onClick={() => window.open(urls.github, '_blank')}
         >
           View Github
         </Button>
