@@ -20,6 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable}`}>
+      <head>
+        <link rel="icon" href="/clock-solid.svg" />
+      </head>
       <body className="font-inter bg-white min-h-screen">
         <Header />
         <main className="min-h-screen bg-white">

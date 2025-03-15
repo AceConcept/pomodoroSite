@@ -74,7 +74,7 @@ export default function Home() {
       {/* Full-width Banner Image */}
       <div className="mt-[18px] w-full overflow-hidden">
         <Image
-          src="/pomotrackMainImage.svg"
+          src="/pomoTrackMainImage2.jpg"
           alt="Pomotrack Main Interface"
           width={1920}
           height={1080}
@@ -96,7 +96,7 @@ export default function Home() {
             </p>
             <div className="mt-[32px]">
               <Image
-                src="/Tagsimg.png"
+                src="/TagsimgHQ.jpg"
                 alt="Tag Functionality Feature"
                 width={325}
                 height={256}
@@ -115,7 +115,7 @@ export default function Home() {
             </p>
             <div className="mt-[32px]">
               <Image
-                src="/timerimg.png"
+                src="/TimerHQ.jpg"
                 alt="Intuitive Timer Feature"
                 width={325}
                 height={256}
@@ -134,7 +134,7 @@ export default function Home() {
             </p>
             <div className="mt-[32px]">
               <Image
-                src="/graphimg.png"
+                src="/GraphHQ.jpg"
                 alt="Long Term Goals Feature"
                 width={325}
                 height={256}
