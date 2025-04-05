@@ -7,16 +7,17 @@ interface ButtonProps {
   variant?: 'outline' | 'dark';
   href?: string;
   download?: boolean;
+  className?: string;
 }
 
-export default function Button({ children, onClick, icon, variant = 'outline', href, download }: ButtonProps) {
-  const baseStyles = "h-[40px] px-[16px] rounded-[32px] text-[14px] font-medium font-inter flex items-center justify-center group transition-opacity";
+export default function Button({ children, onClick, icon, variant = 'outline', href, download, className = '' }: ButtonProps) {
+  const baseStyles = "h-[40px] px-[16px] rounded-[32px] text-[14px] font-normal font-inter flex items-center justify-center group transition-opacity";
   const variantStyles = {
     outline: "bg-transparent border border-[#08090A] text-[#08090A] hover:opacity-90",
     dark: "bg-[#08090A] text-white hover:opacity-90"
   };
 
-  const combinedStyles = `${baseStyles} ${variantStyles[variant]}`;
+  const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`;
 
   if (href && download) {
     return (
