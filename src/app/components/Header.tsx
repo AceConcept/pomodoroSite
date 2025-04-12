@@ -12,7 +12,7 @@ export default function Header() {
   const urls = getAppUrls();
   
   return (
-    <header className="bg-white px-[14.5vw] pt-6">
+    <header className="bg-white px-4 sm:px-[14.5vw] pt-6">
       <div className="flex justify-between items-center h-10">
         {/* Logo */}
         <div className="text-[20px] font-semibold text-[#08090A] font-inter">
