@@ -55,18 +55,27 @@ export default function Home() {
             <div className="flex flex-col md:flex-row gap-4 mt-5">
               <Button 
                 variant="dark"
+                onClick={() => window.open(urls.browser, '_blank')}
+                className="w-full md:w-auto"
+                icon={
+                  <Image
+                    src="/newtab.svg"
+                    alt="New tab"
+                    width={16}
+                    height={16}
+                    className="opacity-100 transition-opacity group-hover:opacity-90 invert brightness-0"
+                  />
+                }
+              >
+                Try on Web
+              </Button>
+              <Button 
+                variant="outline"
                 href={urls.mac}
                 download
                 className="w-full md:w-auto"
               >
                 Download for Mac
-              </Button>
-              <Button 
-                variant="dark"
-                onClick={() => window.open(urls.browser, '_blank')}
-                className="w-full md:w-auto"
-              >
-                Use on Browser
               </Button>
             </div>
           </div>
@@ -156,18 +165,27 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
             <Button 
               variant="dark"
+              onClick={() => window.open(urls.browser, '_blank')}
+              className="w-full md:w-auto"
+              icon={
+                <Image
+                  src="/newtab.svg"
+                  alt="New tab"
+                  width={16}
+                  height={16}
+                  className="opacity-100 transition-opacity group-hover:opacity-90 invert brightness-0"
+                />
+              }
+            >
+              Try on Web
+            </Button>
+            <Button 
+              variant="outline"
               href={urls.mac}
               download
               className="w-full md:w-auto"
             >
               Download for Mac
-            </Button>
-            <Button 
-              variant="dark"
-              onClick={() => window.open(urls.browser, '_blank')}
-              className="w-full md:w-auto"
-            >
-              Use on Browser
             </Button>
           </div>
         </div>
