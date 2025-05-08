@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
           Since all data is stored locally on your device, you have complete control over your data:
         </p>
         <ul className="list-disc list-inside mb-4">
-          <li>You can access your data directly through the application's interface</li>
+          <li>You can access your data directly through the application&apos;s interface</li>
           <li>You can modify or delete your data at any time</li>
           <li>Deleting the application will remove all locally stored data</li>
         </ul>

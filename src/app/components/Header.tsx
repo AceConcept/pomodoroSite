@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Button from './Button';
 
 const getAppUrls = () => ({
@@ -15,9 +16,9 @@ export default function Header() {
     <header className="bg-white px-4 sm:px-[14.5vw] pt-6">
       <div className="flex justify-between items-center h-10">
         {/* Logo */}
-        <a href="/" className="text-[20px] font-semibold text-[#08090A] font-inter hover:text-[#08090A] transition-colors">
+        <Link href="/" className="text-[20px] font-semibold text-[#08090A] font-inter hover:text-[#08090A] transition-colors">
           Pomodash
-        </a>
+        </Link>
         
         {/* Button */}
         <Button 
