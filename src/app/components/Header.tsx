@@ -15,9 +15,9 @@ export default function Header() {
     <header className="bg-white px-4 sm:px-[14.5vw] pt-6">
       <div className="flex justify-between items-center h-10">
         {/* Logo */}
-        <div className="text-[20px] font-semibold text-[#08090A] font-inter">
-          Pomotrack
-        </div>
+        <a href="/" className="text-[20px] font-semibold text-[#08090A] font-inter hover:text-[#08090A] transition-colors">
+          Pomodash
+        </a>
         
         {/* Button */}
         <Button 

@@ -190,6 +190,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <div className="px-4 md:px-[14.5vw] py-8 text-sm text-gray-600">
+        <div className="flex justify-center items-center gap-4">
+          <a href="/privacy" className="hover:text-gray-800 transition-colors">
+            Privacy Policy
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
