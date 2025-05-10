@@ -4,40 +4,53 @@ import Image from 'next/image'
 import Button from './components/Button'
 import { useState, useEffect } from 'react'
 
-async function getLatestReleaseDownloadUrl() {
+async function getLatestReleaseDownloadUrl(): Promise<MacUrls | null> {
   try {
     const response = await fetch('https://api.github.com/repos/dtom90/PomoTrack/releases/latest');
     const data = await response.json();
     
     // Find the first asset that matches your pattern
     const matchingAssets = data.assets.filter((asset: { name: string; }) => 
-      asset.name.match(new RegExp('PomoTrack-\\d+\\.\\d+\\.\\d+\\.dmg'))
+      asset.name.match(new RegExp('Pomodash-.*\\.dmg$'))
     );
     
-    return matchingAssets.length > 0 ? matchingAssets[0]?.browser_download_url : null;
+    if (matchingAssets.length > 0) {
+      const urls = matchingAssets.map((asset: { browser_download_url: string; }) => asset.browser_download_url)
+      const m1Url = urls.find((url: string) => url.includes('arm64'))
+      const intelUrl = urls.find((url: string) => !url.includes('arm64'))
+      return {
+        m1Url,
+        intelUrl
+      }
+    }
+    return null;
   } catch (error) {
     console.error('Error fetching release:', error);
     return null;
   }
 }
 
-const getAppUrls = (macUrl: string | null) => ({
+const urls = {
   browser: 'https://pomotrack.app/',
   github: 'https://github.com/dtom90/PomoTrack',
-  mac: macUrl || '#' // Use fetched URL or fallback to '#'
-});
+}
+
+interface MacUrls {
+  m1Url: string
+  intelUrl: string
+}
 
 export default function Home() {
-  const [macUrl, setMacUrl] = useState<string | null>(null);
+  const [macUrls, setMacUrls] = useState<MacUrls | null>(null);
 
   useEffect(() => {
     getLatestReleaseDownloadUrl().then(url => {
-      setMacUrl(url);
+      if (url) {
+        setMacUrls(url);
+      }
     });
   }, []);
 
-  const urls = getAppUrls(macUrl);
-  
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -69,14 +82,26 @@ export default function Home() {
               >
                 Try on Web
               </Button>
-              <Button 
-                variant="outline"
-                href={urls.mac}
-                download
-                className="w-full md:w-auto"
-              >
-                Download for Mac
-              </Button>
+              {macUrls?.m1Url && (
+                <Button 
+                  variant="outline"
+                  href={macUrls?.m1Url}
+                  download
+                  className="w-full md:w-auto"
+                >
+                  Download for Mac M1
+                </Button>
+              )}
+              {macUrls?.intelUrl && (
+                <Button 
+                  variant="outline"
+                  href={macUrls?.intelUrl}
+                  download
+                  className="w-full md:w-auto"
+                >
+                  Download for Mac Intel
+                </Button>
+              )}
             </div>
           </div>
         </div>
@@ -181,11 +206,19 @@ export default function Home() {
             </Button>
             <Button 
               variant="outline"
-              href={urls.mac}
+              href={macUrls?.m1Url}
               download
               className="w-full md:w-auto"
             >
-              Download for Mac
+              Download for Mac M1
+            </Button>
+            <Button 
+              variant="outline"
+              href={macUrls?.intelUrl}
+              download
+              className="w-full md:w-auto"
+            >
+              Download for Mac Intel
             </Button>
           </div>
         </div>
