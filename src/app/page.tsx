@@ -1,7 +1,5 @@
-'use client';
-
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+
 import { DownloadButtons } from './components/DownloadButtons'
 
 async function getLatestReleaseDownloadUrl(): Promise<MacUrls | null> {
@@ -40,16 +38,8 @@ interface MacUrls {
   intelUrl: string
 }
 
-export default function Home() {
-  const [macUrls, setMacUrls] = useState<MacUrls | null>(null);
-
-  useEffect(() => {
-    getLatestReleaseDownloadUrl().then(url => {
-      if (url) {
-        setMacUrls(url);
-      }
-    });
-  }, []);
+export default async function Home() {
+  const macUrls = await getLatestReleaseDownloadUrl();
 
   return (
     <div className="bg-white">

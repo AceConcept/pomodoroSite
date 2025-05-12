@@ -18,7 +18,7 @@ export function DownloadButtons({ urls, macUrls }: DownloadButtonsProps) {
     <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
       <Button 
         variant="dark"
-        onClick={() => window.open(urls.browser, '_blank')}
+        href={urls.browser}
         className="w-full md:w-auto"
         icon={
           <Image

@@ -2,18 +2,16 @@
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick?: () => void;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   variant?: 'outline' | 'dark';
-  href?: string;
+  href: string;
   download?: boolean;
   className?: string;
 }
 
 export default function Button({ 
   children, 
-  onClick, 
   icon, 
   iconPosition = 'right', 
   variant = 'outline', 
@@ -29,7 +27,7 @@ export default function Button({
 
   const combinedStyles = `${baseStyles} ${variantStyles[variant]} ${className}`;
 
-  if (href && download) {
+  if (download) {
     return (
       <a 
         href={href}
@@ -43,28 +41,16 @@ export default function Button({
     );
   }
 
-  if (href) {
-    return (
-      <a 
-        href={href}
-        className={combinedStyles}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
-        <span className="opacity-100 transition-opacity group-hover:opacity-90">{children}</span>
-        {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
-      </a>
-    );
-  }
-
   return (
-    <button 
+    <a 
+      href={href}
       className={combinedStyles}
-      onClick={onClick}
+      target="_blank"
+      rel="noopener noreferrer"
     >
+      {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
       <span className="opacity-100 transition-opacity group-hover:opacity-90">{children}</span>
-      {icon && <span className="ml-2">{icon}</span>}
-    </button>
+      {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
+    </a>
   );
 } 

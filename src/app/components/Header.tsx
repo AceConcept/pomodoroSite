@@ -7,7 +7,6 @@ import Image from 'next/image';
 const getAppUrls = () => ({
   browser: 'https://pomotrack.app/',
   github: 'https://github.com/dtom90/PomoTrack',
-  mac: '#' // TODO: Add Mac download link when available
 });
 
 export default function Header() {
@@ -41,7 +40,7 @@ export default function Header() {
               />
             </svg>
           }
-          onClick={() => window.open(urls.github, '_blank')}
+          href={urls.github}
         >
           <span className="flex items-center gap-2">
             <Image
