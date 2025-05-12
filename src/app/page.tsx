@@ -31,7 +31,7 @@ async function getLatestReleaseDownloadUrl(): Promise<MacUrls | null> {
 }
 
 const urls = {
-  browser: 'https://pomotrack.app/',
+  browser: 'https://pomodash.app/',
   github: 'https://github.com/dtom90/PomoTrack',
 }
 
