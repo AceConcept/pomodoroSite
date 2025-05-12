@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Button from './Button';
+import Image from 'next/image';
 
 const getAppUrls = () => ({
   browser: 'https://pomotrack.app/',
@@ -42,7 +43,16 @@ export default function Header() {
           }
           onClick={() => window.open(urls.github, '_blank')}
         >
-          View Github
+          <span className="flex items-center gap-2">
+            <Image
+              src="/github_icon.svg"
+              alt="Github"
+              width={16}
+              height={16}
+              className="opacity-100 transition-opacity group-hover:opacity-90"
+            />
+            View Github
+          </span>
         </Button>
       </div>
     </header>

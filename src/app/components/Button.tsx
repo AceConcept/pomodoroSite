@@ -4,13 +4,23 @@ interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
   variant?: 'outline' | 'dark';
   href?: string;
   download?: boolean;
   className?: string;
 }
 
-export default function Button({ children, onClick, icon, variant = 'outline', href, download, className = '' }: ButtonProps) {
+export default function Button({ 
+  children, 
+  onClick, 
+  icon, 
+  iconPosition = 'right', 
+  variant = 'outline', 
+  href, 
+  download, 
+  className = '' 
+}: ButtonProps) {
   const baseStyles = "h-[40px] px-[16px] rounded-[32px] text-[14px] font-normal font-inter flex items-center justify-center group transition-opacity";
   const variantStyles = {
     outline: "bg-transparent border border-[#08090A] text-[#08090A] hover:opacity-90",
@@ -26,8 +36,9 @@ export default function Button({ children, onClick, icon, variant = 'outline', h
         className={combinedStyles}
         download
       >
+        {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
         <span className="opacity-100 transition-opacity group-hover:opacity-90">{children}</span>
-        {icon && <span className="ml-2">{icon}</span>}
+        {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
       </a>
     );
   }
@@ -40,8 +51,9 @@ export default function Button({ children, onClick, icon, variant = 'outline', h
         target="_blank"
         rel="noopener noreferrer"
       >
+        {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
         <span className="opacity-100 transition-opacity group-hover:opacity-90">{children}</span>
-        {icon && <span className="ml-2">{icon}</span>}
+        {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
       </a>
     );
   }

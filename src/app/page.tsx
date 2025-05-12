@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image'
-import Button from './components/Button'
 import { useState, useEffect } from 'react'
+import { DownloadButtons } from './components/DownloadButtons'
 
 async function getLatestReleaseDownloadUrl(): Promise<MacUrls | null> {
   try {
@@ -65,43 +65,8 @@ export default function Home() {
               Discover the perfect tool for timed focus and productivity. Effortlessly manage tasks, track progress, and stay on target with structured work sessions.
             </p>
 
-            <div className="flex flex-col md:flex-row gap-4 mt-5">
-              <Button 
-                variant="dark"
-                onClick={() => window.open(urls.browser, '_blank')}
-                className="w-full md:w-auto"
-                icon={
-                  <Image
-                    src="/newtab.svg"
-                    alt="New tab"
-                    width={16}
-                    height={16}
-                    className="opacity-100 transition-opacity group-hover:opacity-90 invert brightness-0"
-                  />
-                }
-              >
-                Try on Web
-              </Button>
-              {macUrls?.m1Url && (
-                <Button 
-                  variant="outline"
-                  href={macUrls?.m1Url}
-                  download
-                  className="w-full md:w-auto"
-                >
-                  Download for Mac M1
-                </Button>
-              )}
-              {macUrls?.intelUrl && (
-                <Button 
-                  variant="outline"
-                  href={macUrls?.intelUrl}
-                  download
-                  className="w-full md:w-auto"
-                >
-                  Download for Mac Intel
-                </Button>
-              )}
+            <div className="mt-5">
+              <DownloadButtons urls={urls} macUrls={macUrls || { m1Url: '', intelUrl: '' }} />
             </div>
           </div>
         </div>
@@ -187,40 +152,7 @@ export default function Home() {
           <h2 className="text-[24px] md:text-[32px] font-medium font-inter leading-[32px] md:leading-[62px] tracking-[-0.03em] text-[#08090A] text-center md:text-left">
             Stay on task today
           </h2>
-          <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-            <Button 
-              variant="dark"
-              onClick={() => window.open(urls.browser, '_blank')}
-              className="w-full md:w-auto"
-              icon={
-                <Image
-                  src="/newtab.svg"
-                  alt="New tab"
-                  width={16}
-                  height={16}
-                  className="opacity-100 transition-opacity group-hover:opacity-90 invert brightness-0"
-                />
-              }
-            >
-              Try on Web
-            </Button>
-            <Button 
-              variant="outline"
-              href={macUrls?.m1Url}
-              download
-              className="w-full md:w-auto"
-            >
-              Download for Mac M1
-            </Button>
-            <Button 
-              variant="outline"
-              href={macUrls?.intelUrl}
-              download
-              className="w-full md:w-auto"
-            >
-              Download for Mac Intel
-            </Button>
-          </div>
+          <DownloadButtons urls={urls} macUrls={macUrls || { m1Url: '', intelUrl: '' }} />
         </div>
       </div>
 
