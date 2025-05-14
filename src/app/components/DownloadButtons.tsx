@@ -105,7 +105,7 @@ export function DownloadButtons({ urls, macUrls }: DownloadButtonsProps) {
                 role="menuitem"
                 onClick={() => setIsDropdownOpen(false)}
               >
-                Mac Silicon (M1/M2)
+                Mac Silicon
               </a>
               <a
                 href={macUrls.intelUrl}
