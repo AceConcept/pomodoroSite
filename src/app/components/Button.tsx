@@ -8,6 +8,7 @@ interface ButtonProps {
   href: string;
   download?: boolean;
   className?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export default function Button({ 
@@ -17,7 +18,8 @@ export default function Button({
   variant = 'outline', 
   href, 
   download, 
-  className = '' 
+  className = '',
+  onClick
 }: ButtonProps) {
   const baseStyles = "h-[40px] px-[16px] rounded-[32px] text-[14px] font-normal font-inter flex items-center justify-center group transition-opacity";
   const variantStyles = {
@@ -33,6 +35,7 @@ export default function Button({
         href={href}
         className={combinedStyles}
         download
+        onClick={onClick}
       >
         {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
         <span className="opacity-100 transition-opacity group-hover:opacity-90">{children}</span>
@@ -47,6 +50,7 @@ export default function Button({
       className={combinedStyles}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onClick}
     >
       {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
       <span className="opacity-100 transition-opacity group-hover:opacity-90">{children}</span>
